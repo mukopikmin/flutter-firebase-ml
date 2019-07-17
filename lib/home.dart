@@ -8,13 +8,20 @@ class Home extends StatelessWidget {
         title: const Text("Flutter Firebase ML"),
       ),
       body: new Center(
-        child: new RaisedButton(
+          child: new Column(children: <Widget>[
+        new RaisedButton(
           child: const Text("Launch Camera"),
           onPressed: () {
             Navigator.of(context).pushNamed("/capture");
           },
         ),
-      ),
+        new RaisedButton(
+          child: const Text("Launch Meat Camera"),
+          onPressed: () {
+            Navigator.of(context).pushNamed("/capture/meat");
+          },
+        ),
+      ])),
     );
   }
 }

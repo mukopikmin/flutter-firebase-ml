@@ -10,10 +10,11 @@ import 'package:flutter/material.dart';
 enum Detector { barcode, face, label, cloudLabel, text }
 
 class LabelDetectorPainter extends CustomPainter {
-  LabelDetectorPainter(this.absoluteImageSize, this.labels);
+  LabelDetectorPainter(this.absoluteImageSize, this.labels, this.meatOnly );
 
   final Size absoluteImageSize;
   final List<ImageLabel> labels;
+  final bool meatOnly;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -28,7 +29,7 @@ class LabelDetectorPainter extends CustomPainter {
     for (ImageLabel label in labels) {
       RegExp regexp = new RegExp(r'beef|meat|chicken|food', caseSensitive: false);
 
-      if (regexp.hasMatch(label.text)) {
+      if (regexp.hasMatch(label.text) && meatOnly) {
         builder.addText('Label: ${label.text}, '
             'Confidence: ${label.confidence.toStringAsFixed(2)}\n');
       }
