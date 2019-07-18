@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'capture.dart';
 import 'meat_capture.dart';
+import 'horse_capture.dart';
 import 'home.dart';
 
 void main() {
@@ -12,6 +13,8 @@ void main() {
             CameraPreviewScanner(),
       '/capture/meat': (BuildContext context) =>
             CameraPreviewMeatScanner(),
+      '/capture/horse': (BuildContext context) =>
+            CameraPreviewHorseScanner(),
     },
   ));
 }

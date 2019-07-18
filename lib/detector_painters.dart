@@ -10,11 +10,12 @@ import 'package:flutter/material.dart';
 enum Detector { barcode, face, label, cloudLabel, text }
 
 class LabelDetectorPainter extends CustomPainter {
-  LabelDetectorPainter(this.absoluteImageSize, this.labels, this.meatOnly );
+  LabelDetectorPainter(this.absoluteImageSize, this.labels, this.meatOnly, this.horseMode);
 
   final Size absoluteImageSize;
   final List<ImageLabel> labels;
   final bool meatOnly;
+  final bool horseMode;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -26,12 +27,23 @@ class LabelDetectorPainter extends CustomPainter {
     );
 
     builder.pushStyle(ui.TextStyle(color: Colors.green));
-    for (ImageLabel label in labels) {
-      RegExp regexp = new RegExp(r'beef|meat|chicken|food', caseSensitive: false);
 
-      if (regexp.hasMatch(label.text) && meatOnly) {
-        builder.addText('Label: ${label.text}, '
-            'Confidence: ${label.confidence.toStringAsFixed(2)}\n');
+    if (this.horseMode) {
+      builder.addText('Label: Horsemeat, '
+        'Confidence: 1.00\n');
+    } else {
+      for (ImageLabel label in labels) {
+        RegExp regexp = new RegExp(r'beef|meat|chicken|food', caseSensitive: false);
+
+        if (this.meatOnly) {
+          if (regexp.hasMatch(label.text)) {
+            builder.addText('Label: ${label.text}, '
+                'Confidence: ${label.confidence.toStringAsFixed(2)}\n');
+          }
+        } else {
+            builder.addText('Label: ${label.text}, '
+                'Confidence: ${label.confidence.toStringAsFixed(2)}\n');
+        }
       }
     }
     builder.pop();

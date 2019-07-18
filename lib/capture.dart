@@ -80,7 +80,7 @@ class _CameraPreviewScannerState extends State<CameraPreviewScanner> {
     );
 
     if (_scanResults is! List<ImageLabel>) return noResultsText;
-    painter = LabelDetectorPainter(imageSize, _scanResults, false);
+    painter = LabelDetectorPainter(imageSize, _scanResults, false, false);
 
     return CustomPaint(
       painter: painter,

@@ -21,6 +21,12 @@ class Home extends StatelessWidget {
             Navigator.of(context).pushNamed("/capture/meat");
           },
         ),
+        new RaisedButton(
+          child: const Text("Launch Horse Camera"),
+          onPressed: () {
+            Navigator.of(context).pushNamed("/capture/horse");
+          },
+        ),
       ])),
     );
   }

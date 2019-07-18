@@ -10,12 +10,12 @@ import 'package:flutter/material.dart';
 import 'detector_painters.dart';
 import 'scanner_utils.dart';
 
-class CameraPreviewMeatScanner extends StatefulWidget {
+class CameraPreviewHorseScanner extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _CameraPreviewScannerState();
 }
 
-class _CameraPreviewScannerState extends State<CameraPreviewMeatScanner> {
+class _CameraPreviewScannerState extends State<CameraPreviewHorseScanner> {
   dynamic _scanResults;
   CameraController _camera;
   Detector _currentDetector = Detector.text;
@@ -80,7 +80,7 @@ class _CameraPreviewScannerState extends State<CameraPreviewMeatScanner> {
     );
 
     if (_scanResults is! List<ImageLabel>) return noResultsText;
-    painter = LabelDetectorPainter(imageSize, _scanResults, true, false);
+    painter = LabelDetectorPainter(imageSize, _scanResults, true, true);
 
     return CustomPaint(
       painter: painter,
@@ -131,7 +131,7 @@ class _CameraPreviewScannerState extends State<CameraPreviewMeatScanner> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detection Meat with Fireabase ML'),
+        title: const Text('Detection Horse with Fireabase ML'),
       ),
       body: _buildImage(),
       floatingActionButton: FloatingActionButton(
